@@ -79,4 +79,4 @@ class SalesPersonForm extends React.Component {
     }
 }
 
-export default PotentialCustomerForm;
+export default SalesPersonForm;
