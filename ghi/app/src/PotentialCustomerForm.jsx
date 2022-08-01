@@ -67,7 +67,7 @@ class PotentialCustomerForm extends React.Component {
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-                <h1>Create a new customer</h1>
+                <h1>Create a New Customer</h1>
                 <form onSubmit={this.handleSubmit} id="create-customer-form">
                 <div className="form-floating mb-3">
                     <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
@@ -75,11 +75,11 @@ class PotentialCustomerForm extends React.Component {
                 </div>
                 <div className="form-floating mb-3">
                     <input value={this.state.address} onChange={this.handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
-                    <label htmlFor="address">address</label>
+                    <label htmlFor="address">Address</label>
                 </div>
                 <div className="form-floating mb-3">
                     <input value={this.state.phone_number} onChange={this.handlePhoneNumberChange} placeholder="Phone_number" required type="text" name="phone_number" id="phone_number" className="form-control" />
-                    <label htmlFor="color">Color</label>
+                    <label htmlFor="phone_number">Phone Number</label>
                 </div>
                 <button className="btn btn-primary">Create</button>
                 </form>
