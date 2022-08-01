@@ -14,11 +14,11 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/SalesPerson" element={<SalesPersonForm />} />
-          <Route path="/Potential_Customer" element={<PotentialCustomerForm />} />
-          <Route path="/SalesRecord" element={<SalesRecordForm />} />
-          <Route path="/Sales" element={<SalesList />} />
-          <Route path="/SalesHistory" element={<SalesHistoryList />} />
+          <Route path="/salesperson/new" element={<SalesPersonForm />} />
+          <Route path="/customer/new" element={<PotentialCustomerForm />} />
+          <Route path="/sales/new" element={<SalesRecordForm />} />
+          <Route path="/sales" element={<SalesList />} />
+          <Route path="/saleshistory" element={<SalesHistoryList />} />
 
         </Routes>
       </div>
