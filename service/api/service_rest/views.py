@@ -33,8 +33,11 @@ def api_appointments(request):
     else:
         try:
             content = json.loads(request.body)
+            print("content:", content)
             automobile = AutomobileVO.objects.get(import_href=content["automobile"])
+            print("automobile: ", automobile)
             content["automobile"] = automobile
+            # setting content's automobile attribute to the specific automobileVO
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
