@@ -18,9 +18,9 @@ function ServiceAppList() {
             method: "delete"
         };
         const response = await fetch(url2, fetchConfig);
-        setShoes(
-            shoes.filter((shoe) => {
-                return shoe.id !== id;
+        setAppointments(
+            appointments.filter((appointment) => {
+                return appointment.id !== id;
             })
         )
     }
