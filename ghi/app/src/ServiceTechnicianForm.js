@@ -51,20 +51,20 @@ class ServiceTechnicianForm extends React.Component {
         <>
           <div className="row">
               <div className="offset-3 col-6">
-              <div className="shadow p-4 mt-4">
-                  <h1>Enter Technician</h1>
-                  <form onSubmit={this.handleSubmit} id="create-technician-form">
-                  <div className="form-floating mb-3">
-                      <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
-                      <label htmlFor="name">Name</label>
-                  </div>
-                  <div className="form-floating mb-3">
-                      <input value={this.state.employee_num} onChange={this.handleEmployeeNumChange} placeholder="Employee Num" required type="number" name="employee_num" id="employee_num" className="form-control" />
-                      <label htmlFor="employee_num">Employee Number</label>
-                  </div>
-                  <button className="btn btn-outline-success">Create</button>
-                  </form>
-              </div>
+                <div className="shadow p-4 mt-4">
+                    <h1>Enter Technician</h1>
+                    <form onSubmit={this.handleSubmit} id="create-technician-form">
+                    <div className="form-floating mb-3">
+                        <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                        <label htmlFor="name">Name</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input value={this.state.employee_num} onChange={this.handleEmployeeNumChange} placeholder="Employee Num" required type="number" name="employee_num" id="employee_num" className="form-control" />
+                        <label htmlFor="employee_num">Employee Number</label>
+                    </div>
+                    <button className="btn btn-outline-success">Create</button>
+                    </form>
+                </div>
               </div>
           </div>
         </>

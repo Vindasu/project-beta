@@ -24,7 +24,6 @@ def get_auto():
                 "vin": auto["vin"],
             }
         )
-        print("auto: ", auto)
 
 def poll():
     while True:

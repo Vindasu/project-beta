@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// export default () => {
 function ServiceAppList() {
     const [appointments, setAppointments] = useState([])
 
@@ -48,16 +47,18 @@ function ServiceAppList() {
                 }}
                 >Create Appointment
             </button>
-            <table class="table table-dark table-hover">
+            <table className="table table-dark table-hover">
                 <thead>
                     <tr>
                         <th>VIN</th>
                         <th>Customer Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
+                        {/* <th>Date</th>
+                        <th>Time</th> */}
                         <th>Technician</th>
                         <th>Reason</th>
                         <th>VIP</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,11 +66,13 @@ function ServiceAppList() {
                         <tr key={appointment.id}>
                             <td>{appointment.vin}</td>
                             <td>{appointment.customer}</td>
-                            <td>{appointment.date_time}</td>
-                            <td>{appointment.date_time}</td>
+                            {/* <td>{appointment.date_time}</td>
+                            <td>{appointment.date_time}</td> */}
                             <td>{appointment.technician.name}</td>
                             <td>{appointment.reason}</td>
                             <td></td>
+                            <td><button onClick={() => handleDelete(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
+                            <td><button onClick={() => handleDelete(appointment.id)} className="btn btn-outline-success">Finished</button></td>
                         </tr>
                     ))}
                 </tbody>
