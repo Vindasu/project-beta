@@ -21,17 +21,17 @@ class AppointmentEncoder(ModelEncoder):
         "id",
         "vin",
         "customer",
-        "date_time",
+        # "date_time",
         "reason",
         'technician',
     ]
     encoders = {
         "technician": TechnicianEncoder(),
     }
-    def get_extra_data(self, o):
-        return {
-            "automobile": o.automobile.import_href,
-        }
+    # def get_extra_data(self, o):
+    #     return {
+    #         "automobile": o.automobile.import_href,
+    #     }
 
 @require_http_methods(["GET", "POST"])
 def api_appointments(request):
@@ -42,23 +42,26 @@ def api_appointments(request):
             encoder=AppointmentEncoder,
         )
     else:
-        content = json.loads(request.body)
         try:
-            automobile = AutomobileVO.objects.get(import_href=content["automobile"])
-            content["automobile"] = automobile
+            # automobile = AutomobileVO.objects.get(import_href=content["automobile"])
+            # content["automobile"] = automobile
             # setting content's automobile attribute to the specific automobileVO
+            content = json.loads(request.body)
+            technician_id = content["technician_id"]
+            technician = Technician.objects.get(pk=technician_id)
+            content["technician"] = technician
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
         except:
             response = JsonResponse(
                 {"message": "Could not create the appointment"}
             )
             response.status_code = 400
             return response
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_appointment(request, pk):

@@ -26,7 +26,6 @@ class ServiceTechnicianForm extends React.Component {
         },
     };
     const response = await fetch(url, fetchConfig);
-    console.log("response: ", response);
     if (response.ok) {
         const cleared = {
             name: '',

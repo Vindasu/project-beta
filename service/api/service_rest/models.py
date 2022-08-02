@@ -15,7 +15,7 @@ class Technician(models.Model):
 class Appointment(models.Model):
     vin = models.CharField(max_length=17, null=True, blank=True)
     customer = models.CharField(max_length=100, null=True, blank=True)
-    date_time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    # date_time = models.DateTimeField(null=True, blank=True)
     reason = models.CharField(max_length=100, null=True, blank=True)
     technician = models.ForeignKey(
         Technician,
@@ -24,10 +24,10 @@ class Appointment(models.Model):
         null=True,
         blank=True,
     )
-    automobile = models.ForeignKey(
-        AutomobileVO,
-        related_name="appointments",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
+    # automobile = models.ForeignKey(
+    #     AutomobileVO,
+    #     related_name="appointments",
+    #     on_delete=models.CASCADE,
+    #     null=True,
+    #     blank=True,
+    # )
