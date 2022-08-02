@@ -18,19 +18,20 @@ class ServiceTechnicianForm extends React.Component {
 
     const url = 'http://localhost:8080/api/technicians/';
     const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
     };
     const response = await fetch(url, fetchConfig);
+    console.log("response: ", response);
     if (response.ok) {
-      const cleared = {
-        name: '',
-        employee_num: '',
-      };
-      this.setState(cleared);
+        const cleared = {
+            name: '',
+            employee_num: '',
+        };
+        this.setState(cleared);
     }
   }
 
@@ -54,12 +55,21 @@ class ServiceTechnicianForm extends React.Component {
                     e.preventDefault();
                     window.open('http://localhost:3000/services');
                 }}
-                >Enter a technician
+                >Enter Technician
+            </button>
+            &nbsp;
+            <button
+                className="btn btn-outline-primary"
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.open('http://localhost:3000/services/new');
+                }}
+                >Create Appointment
             </button>
             <div className="row">
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Enter a technician</h1>
+                    <h1>Enter Technician</h1>
                     <form onSubmit={this.handleSubmit} id="create-technician-form">
                     <div className="form-floating mb-3">
                         <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
@@ -67,7 +77,7 @@ class ServiceTechnicianForm extends React.Component {
                     </div>
                     <div className="form-floating mb-3">
                         <input value={this.state.employee_num} onChange={this.handleEmployeeNumChange} placeholder="Employee Num" required type="number" name="employee_num" id="employee_num" className="form-control" />
-                        <label htmlFor="employee_num">Employee Num</label>
+                        <label htmlFor="employee_num">Employee Number</label>
                     </div>
                     <button className="btn btn-outline-success">Create</button>
                     </form>

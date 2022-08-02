@@ -110,28 +110,16 @@ def api_technicians(request):
             safe=False,
         )
 
-# @require_http_methods(["DELETE", "GET", "PUT"])
-# def api_appointment(request, pk):
-#     if request.method == "GET":
-#         try:
-#             appointment = Appointment.objects.get(id=pk)
-#             return JsonResponse(
-#                 appointment,
-#                 encoder=AppointmentEncoder,
-#                 safe=False
-#             )
-#         except Appointment.DoesNotExist:
-#             response = JsonResponse({"message": "Does not exist"})
-#             response.status_code = 404
-#             return response
-#     elif request.method == "DELETE":
-#         try:
-#             appointment = Appointment.objects.get(id=pk)
-#             appointment.delete()
-#             return JsonResponse(
-#                 appointment,
-#                 encoder=AppointmentEncoder,
-#                 safe=False,
-#             )
-#         except Appointment.DoesNotExist:
-#             return JsonResponse({"message": "Does not exist"})
+@require_http_methods(["DELETE"])
+def api_technician(request, pk):
+    if request.method == "DELETE":
+        try:
+            technicians = Technician.objects.get(id=pk)
+            technicians.delete()
+            return JsonResponse(
+                technicians,
+                encoder=TechnicianEncoder,
+                safe=False,
+            )
+        except Technician.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
