@@ -44,15 +44,15 @@ class SalesPersonForm extends React.Component {
         this.setState({employee_number: value})
     }
     
-    // async componentDidMount() {
-    //     const url = 'http://localhost:8090/api/employees/';
-    //     const response = await fetch(url);
+    async componentDidMount() {
+        const url = 'http://localhost:8090/api/employees/';
+        const response = await fetch(url);
 
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         this.setState({data})
-    //     }
-    // }
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({data})
+        }
+    }
 
     
     render() {

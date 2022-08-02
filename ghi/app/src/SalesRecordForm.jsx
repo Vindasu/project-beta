@@ -7,8 +7,11 @@ class SalesRecordForm extends React.Component {
         super(props)
         this.state = {
             employees: [],
+            employee: '',
             automobiles: [],
+            automobile: '',
             customers: [],
+            customer: '',
             price: '',
         };
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
@@ -20,6 +23,9 @@ class SalesRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
+        delete data.employees;
+        delete data.automobiles;
+        delete data.customers;
         const url = 'http://localhost:8090/api/sales_rest/'
         const fetchConfig = {
             method: "post",
@@ -31,9 +37,10 @@ class SalesRecordForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const cleared = {
-                name: '',
-                address: '',
-                phone_number: '',
+                employees: [],
+                automobiles: [],
+                customers: [],
+                price: '',
             };
             this.setState(cleared);
         }
@@ -66,25 +73,25 @@ class SalesRecordForm extends React.Component {
         }
     }
 
-    // async componentDidMount() {
-    //     const url = 'http://localhost:8090/api/employees/';
-    //     const response = await fetch(url);
+    async componentDidMount() {
+        const url = 'http://localhost:8090/api/employees/';
+        const response = await fetch(url);
 
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         this.setState({employees: data.employees})
-    //     }
-    // }
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({employees: data.employees})
+        }
+    }
 
-    // async componentDidMount() {
-    //     const url = 'http://localhost:8090/api/customers/';
-    //     const response = await fetch(url);
+    async componentDidMount() {
+        const url = 'http://localhost:8090/api/customers/';
+        const response = await fetch(url);
 
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         this.setState({customers: data.customers})
-    //     }
-    // }
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({customers: data.customers})
+        }
+    }
 
     
     render() {

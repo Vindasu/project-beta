@@ -23,7 +23,7 @@ function App() {
           <Route path="/customer/new" element={<PotentialCustomerForm />} />
           <Route path="/sales/new" element={<SalesRecordForm />} />
           <Route path="/sales" element={<SalesList />} />
-          {/* <Route path="/saleshistory" element={<SalesHistoryList />} /> */}
+          <Route path="/saleshistory" element={<SalesHistoryList />} />
           <Route path="services" element={<ServiceTechnicianForm />} />
           <Route path="services/new" element={<ServiceAppForm />} />
         </Routes>
