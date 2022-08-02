@@ -6,8 +6,8 @@ class SalesRecordForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            employees: [],
-            employee: '',
+            sales_people: [],
+            sales_person: '',
             automobiles: [],
             automobile: '',
             customers: [],
@@ -23,7 +23,7 @@ class SalesRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        delete data.employees;
+        delete data.sales_people;
         delete data.automobiles;
         delete data.customers;
         const url = 'http://localhost:8090/api/sales_rest/'
@@ -37,7 +37,7 @@ class SalesRecordForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const cleared = {
-                employees: [],
+                sales_people: [],
                 automobiles: [],
                 customers: [],
                 price: '',
@@ -79,7 +79,7 @@ class SalesRecordForm extends React.Component {
 
         if (response.ok) {
             const data = await response.json();
-            this.setState({employees: data.employees})
+            this.setState({sales_people: data.sales_people})
         }
     }
 
@@ -102,7 +102,7 @@ class SalesRecordForm extends React.Component {
                 <h1>Create a Sales Record</h1>
                 <form onSubmit={this.handleSubmit} id="create-sale-request-form">
                 <div className="mb-3">
-                    <select value={this.state.automobile} onChange={this.handleAutomobileChange} required name="automobile" id="vin" className="form-select">
+                    <select value={this.state.automobile} onChange={this.handleAutomobileChange} required name="automobile" id="automobile" className="form-select">
                     <option value="">Choose an automobile</option>
                     {this.state.automobiles.map(automobile => {
                         return (
@@ -114,26 +114,26 @@ class SalesRecordForm extends React.Component {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <select value={this.state.sales_person} onChange={this.handleSalesPersonChange} required name="employees" id="employee_number" className="form-select">
+                    <select value={this.state.sales_person} onChange={this.handleSalesPersonChange} required name="sales_person" id="sales_person" className="form-select">
                     <option value="">Choose a Sales Rep</option>
-                    {this.state.employees.map(employee => {
+                    {this.state.sales_people.map(sales_person => {
                         return (
-                        <option key={employee.id} value={employee.href}>
-                            {employee.employee_number}
+                        <option key={sales_person.id} value={sales_person.id}>
+                            {sales_person.employee_number}
                         </option>
                         );
                     })}
                     </select>
                 </div>
                 <div className="mb-3">
-                    <select value={this.state.customer} onChange={this.handleCustomerChange} required name="customer" id="id" className="form-select">
-                    <option value="">Choose a customer</option>
-                    {this.state.customers.map(customer => {
-                        return (
-                        <option key={customer.id} value={customer.href}>
-                            {customer.id}
-                        </option>
-                        );
+                        <select value={this.state.customer} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
+                        <option value="">Choose a customer</option>
+                        {this.state.customers.map(customer => {
+                            return (
+                            <option key={customer.id} value={customer.id}>
+                                {customer.name}
+                            </option>
+                            );
                     })}
                     </select>
                 </div>
