@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderMatches } from 'react-router-dom';
 
+
 class PotentialCustomerForm extends React.Component {
     constructor(props) {
         super(props)
@@ -17,7 +18,7 @@ class PotentialCustomerForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        const url = 'http://localhost: FILL THIS OUT'
+        const url = 'http://localhost:8090/api/customers/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -51,15 +52,15 @@ class PotentialCustomerForm extends React.Component {
         this.setState({phone_number: value})
     }
     
-    async componentDidMount() {
-        const url = 'http://localhost:8090/api/customers/';
-        const response = await fetch(url);
+    // async componentDidMount() {
+    //     const url = 'http://localhost:8100/api/automobiles/';
+    //     const response = await fetch(url);
 
-        if (response.ok) {
-            const data = await response.json();
-            this.setState(data)
-        }
-    }
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         this.setState(data)
+    //     }
+    // }
 
     
     render() {
@@ -68,7 +69,7 @@ class PotentialCustomerForm extends React.Component {
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
                 <h1>Create a New Customer</h1>
-                <form onSubmit={this.handleSubmit} id="create-customer-form">
+                <form onSubmit={this.handleSubmit} id="potential_customer-form">
                 <div className="form-floating mb-3">
                     <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                     <label htmlFor="Name">Name</label>

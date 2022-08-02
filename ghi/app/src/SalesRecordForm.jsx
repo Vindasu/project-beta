@@ -19,7 +19,7 @@ class SalesRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        const url = 'http://localhost:8090/api/sales/'
+        const url = 'http://localhost:8090/api/sales_rest/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -65,25 +65,25 @@ class SalesRecordForm extends React.Component {
         }
     }
 
-    async componentDidMount() {
-        const url = 'http://localhost:8090/api/employees/';
-        const response = await fetch(url);
+    // async componentDidMount() {
+    //     const url = 'http://localhost:8090/api/employees/';
+    //     const response = await fetch(url);
 
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({employees: data.employees})
-        }
-    }
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         this.setState({employees: data.employees})
+    //     }
+    // }
 
-    async componentDidMount() {
-        const url = 'http://localhost:8090/api/customers/';
-        const response = await fetch(url);
+    // async componentDidMount() {
+    //     const url = 'http://localhost:8090/api/customers/';
+    //     const response = await fetch(url);
 
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({customers: data.customers})
-        }
-    }
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         this.setState({customers: data.customers})
+    //     }
+    // }
 
     
     render() {
@@ -95,7 +95,7 @@ class SalesRecordForm extends React.Component {
                 <form onSubmit={this.handleSubmit} id="create-sale-request-form">
                 <div className="mb-3">
                     <select value={this.state.automobile} onChange={this.handleAutomobileChange} required name="automobile" id="vin" className="form-select">
-                    <option value="">Choose a bin</option>
+                    <option value="">Choose an automobile</option>
                     {this.state.automobiles.map(automobile => {
                         return (
                         <option key={automobile.id} value={automobile.href}>
