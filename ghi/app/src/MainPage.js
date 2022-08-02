@@ -11,7 +11,7 @@ function MainPage() {
     
     </div>
       <h1>
-        <img src="https://i.imgur.com/hXf7vQI.png" className="" alt= "CarCar Logo" width="150" height="150"/>
+        <img src="https://i.imgur.com/tkeHZlr.png" className="" alt= "CarCar Logo" width="" height=""/>
         </h1>
         <div class="container-sm">
       <div className="col-lg-3 mx-auto">
