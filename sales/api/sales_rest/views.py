@@ -16,6 +16,7 @@ class SalesPersonEncoder(ModelEncoder):
 class PotentialCustomerEncoder(ModelEncoder):
     model = PotentialCustomer
     properties = [
+        "id",
         "name",
         "address",
         "phone_number",
@@ -23,9 +24,7 @@ class PotentialCustomerEncoder(ModelEncoder):
 
 class SaleEncoder(ModelEncoder):
     model = Sale
-    properties = [
-        "sales_person",
-        "customer",
+    properties = [ 
         "price",
     ]
     encoders = {
@@ -140,7 +139,7 @@ def api_sales_person(request):
 def api_show_sales_person(request, pk):
     if request.method == "GET":
         try:
-            employee = SalesPerson.objects.get(employee_number=pk)
+            employee = SalesPerson.objects.get(id=pk)
             return JsonResponse(
                 employee,
                 encoder=SalesPersonEncoder,
@@ -152,7 +151,7 @@ def api_show_sales_person(request, pk):
             return response
     elif request.method == "DELETE":
         try:
-            employee = SalesPerson.objects.get(employee_number=pk)
+            employee = SalesPerson.objects.get(id=pk)
             employee.delete()
             return JsonResponse(
                 employee,
@@ -164,7 +163,7 @@ def api_show_sales_person(request, pk):
     else: # PUT
         try:
             content = json.loads(request.body)
-            employee = SalesPerson.objects.get(employee_number=pk)
+            employee = SalesPerson.objects.get(id=pk)
             props = ["name", "employee_number"]
             for prop in props:
                 if prop in content:
