@@ -45,9 +45,7 @@ def api_appointments(request):
         content = json.loads(request.body)
         try:
             automobile = AutomobileVO.objects.get(import_href=content["automobile"])
-            print("automobile:~~~~~", automobile)
             content["automobile"] = automobile
-            print("content:~~~~~", content)
             # setting content's automobile attribute to the specific automobileVO
         except:
             response = JsonResponse(
@@ -56,7 +54,6 @@ def api_appointments(request):
             response.status_code = 400
             return response
         appointment = Appointment.objects.create(**content)
-        print("appointment:~~~~~", appointment)
         return JsonResponse(
             appointment,
             encoder=AppointmentEncoder,

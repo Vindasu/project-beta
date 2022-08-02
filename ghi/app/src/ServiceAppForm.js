@@ -1,11 +1,14 @@
 import React from 'react';
 
-class ServiceTechnicianForm extends React.Component {
+class ServiceAppForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        name: '',
-        employee_num: '',
+        vin: '',
+        customer: '',
+        date_time: '',
+        reason: '',
+        technician: [],
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmployeeNumChange = this.handleEmployeeNumChange.bind(this);
@@ -79,4 +82,4 @@ class ServiceTechnicianForm extends React.Component {
   }
 }
 
-export default ServiceTechnicianForm;
+export default ServiceAppForm;
