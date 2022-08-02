@@ -1,0 +1,13 @@
+.BackGround {
+    background-image: 
+    url(
+"https://i.imgur.com/XNjtdaQ.png");
+    background-size: "inherit";
+    height: 80vh;
+    margin-top: -20px;
+    background-repeat:no-repeat; 
+}
+
+.opacity80 {
+    background: rgba(255,255,255,0.8);
+    }

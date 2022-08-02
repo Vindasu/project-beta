@@ -52,7 +52,7 @@ class PotentialCustomerForm extends React.Component {
     }
     
     async componentDidMount() {
-        const url = 'http://localhost:8100/apiFILLTHISOUT';
+        const url = 'http://localhost:8090/api/customers/';
         const response = await fetch(url);
 
         if (response.ok) {

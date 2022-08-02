@@ -52,6 +52,7 @@ services:
       DATABASE_URL: postgres://service:password@database:5432/service
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
+      PEXELS_API_KEY: ${PEXELS_API_KEY}
   service-poller:
     build:
       context: ./service/poll
@@ -81,6 +82,7 @@ services:
       DATABASE_URL: postgres://sales:password@database:5432/sales
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
+      PEXELS_API_KEY: ${PEXELS_API_KEY}
   sales-poller:
     build:
       context: ./sales/poll

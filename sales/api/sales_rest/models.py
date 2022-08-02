@@ -7,6 +7,7 @@ class AutomobileVO(models.Model):
     year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
 
+
 class SalesPerson(models.Model):
     name = models.CharField(max_length=200,  null=True, blank=True)
     employee_number = models.PositiveSmallIntegerField(default=1)

@@ -6,11 +6,14 @@ import PotentialCustomerForm from './PotentialCustomerForm';
 import SalesRecordForm from './SalesRecordForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistoryList';
+import './App.css';
 
 function App() {
   return (
+    <div  className="BackGround">
     <BrowserRouter>
       <Nav />
+      
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -23,6 +26,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </div>
   );
 }
 

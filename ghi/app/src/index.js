@@ -4,7 +4,9 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <div class="p-3 mb-2 bg-dark text-white">
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  </div>
 );

@@ -27,7 +27,6 @@ class SalesPersonForm extends React.Component {
         if (response.ok) {
             const cleared = {
                 name: '',
-                address: '',
                 employee_number: '',
             };
             this.setState(cleared);
@@ -45,7 +44,7 @@ class SalesPersonForm extends React.Component {
     }
     
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/sales/';
+        const url = 'http://localhost:8090/api/employees/';
         const response = await fetch(url);
 
         if (response.ok) {
