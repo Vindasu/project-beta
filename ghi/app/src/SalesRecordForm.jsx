@@ -26,7 +26,7 @@ class SalesRecordForm extends React.Component {
         delete data.sales_people;
         delete data.automobiles;
         delete data.customers;
-        const url = 'http://localhost:8090/api/sales_rest/'
+        const url = 'http://localhost:8090/api/sales/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),

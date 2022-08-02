@@ -48,7 +48,7 @@ function ServiceAppList() {
                 }}
                 >Create Appointment
             </button>
-            <table className="table">
+            <table class="table table-dark table-hover">
                 <thead>
                     <tr>
                         <th>VIN</th>

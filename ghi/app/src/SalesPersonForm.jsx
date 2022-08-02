@@ -16,7 +16,7 @@ class SalesPersonForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        const url = 'http://localhost:8090/api/sales_rest/'
+        const url = 'http://localhost:8090/api/employees/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
