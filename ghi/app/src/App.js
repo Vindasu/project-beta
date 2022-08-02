@@ -7,6 +7,7 @@ import PotentialCustomerForm from './PotentialCustomerForm';
 import SalesRecordForm from './SalesRecordForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistoryList';
+import ServiceAppList from './ServiceAppList';
 import ServiceTechnicianForm from './ServiceTechnicianForm';
 import ServiceAppForm from './ServiceAppForm';
 
@@ -24,7 +25,8 @@ function App() {
           <Route path="/sales/new" element={<SalesRecordForm />} />
           <Route path="/sales" element={<SalesList />} />
           <Route path="/saleshistory" element={<SalesHistoryList />} />
-          <Route path="services" element={<ServiceTechnicianForm />} />
+          <Route path="services" element={<ServiceAppList />} />
+          <Route path="technicians" element={<ServiceTechnicianForm />} />
           <Route path="services/new" element={<ServiceAppForm />} />
         </Routes>
       </div>

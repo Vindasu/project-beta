@@ -7,14 +7,14 @@ class ServiceAppForm extends React.Component {
     this.state = {
         vin: '',
         customer: '',
-        // date_time: '',
+        date_time: '',
         reason: '',
         technician: '',
         technicians: [],
     };
     this.handleVinChange = this.handleVinChange.bind(this);
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
-    // this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
+    this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
     this.handleReasonChange = this.handleReasonChange.bind(this);
     this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,7 +41,7 @@ class ServiceAppForm extends React.Component {
       const cleared = {
         vin: '',
         customer: '',
-        // date_time: '',
+        date_time: '',
         reason: '',
       };
       this.setState(cleared);
@@ -58,10 +58,10 @@ class ServiceAppForm extends React.Component {
     this.setState({customer: value})
   }
 
-//   handleDateTimeChange(event) {
-//     const value = event.target.value;
-//     this.setState({date_time: value})
-//   }
+  handleDateTimeChange(event) {
+    const value = event.target.value;
+    this.setState({date_time: value})
+  }
 
   handleReasonChange(event) {
     const value = event.target.value;
@@ -100,10 +100,10 @@ class ServiceAppForm extends React.Component {
                             <input value={this.state.customer} onChange={this.handleCustomerChange} placeholder="Customer" required type="text" name="customer" id="customer" className="form-control" />
                             <label htmlFor="customer">Customer</label>
                         </div>
-                        {/* <div className="form-floating mb-3">
-                            <input value={this.state.date_time} onChange={this.handleDateTimeChange} placeholder="Date Time" type="date" name="date_time" id="date_time" className="form-control" />
+                        <div className="form-floating mb-3">
+                            <input value={this.state.date_time} onChange={this.handleDateTimeChange} placeholder="Date Time" type="datetime-local" name="date_time" id="date_time" className="form-control" />
                             <label htmlFor="date_time">Date Time</label>
-                        </div> */}
+                        </div>
                         <div className="mb-3">
                             <select value={this.state.technician} onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
                             <option value="">Choose a technician</option>
