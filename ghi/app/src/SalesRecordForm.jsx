@@ -5,13 +5,13 @@ class SalesRecordForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sales_people: [],
+            employees: [],
             automobiles: [],
             customers: [],
             price: '',
         };
-        this.handAutomobileChange = this.handAutomobileChange.bind(this);
-        this.handleSalesPeopleChange = this.handleSalesPeopleChange.bind(this);
+        this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
+        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
     }
@@ -38,18 +38,50 @@ class SalesRecordForm extends React.Component {
         }
     }
 
-    handleBinChange(event) {
+    handleAutomobileChange(event) {
         const value = event.target.value;
-        this.setState({bin: value})
+        this.setState({automobile: value})
+    }
+    handleSalesPersonChange(event) {
+        const value = event.target.value;
+        this.setState({sales_person: value})
+    }
+    handleCustomerChange(event) {
+        const value = event.target.value;
+        this.setState({customer: value})
+    }
+    handlePriceChange(event) {
+        const value = event.target.value;
+        this.setState({price: value})
     }
 
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/bins/';
+        const url = 'http://localhost:8100/api/automobiles/';
         const response = await fetch(url);
 
         if (response.ok) {
             const data = await response.json();
-            this.setState({bins: data.bins})
+            this.setState({automobiles: data.automobiles})
+        }
+    }
+
+    async componentDidMount() {
+        const url = 'http://localhost:8090/api/employees/';
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({employees: data.employees})
+        }
+    }
+
+    async componentDidMount() {
+        const url = 'http://localhost:8090/api/customers/';
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({customers: data.customers})
         }
     }
 
@@ -59,19 +91,47 @@ class SalesRecordForm extends React.Component {
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-                <h1>Create a New Customer</h1>
-                <form onSubmit={this.handleSubmit} id="create-customer-form">
-                <div className="form-floating mb-3">
-                    <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
-                    <label htmlFor="Name">Name</label>
+                <h1>Create a Sales Record</h1>
+                <form onSubmit={this.handleSubmit} id="create-sale-request-form">
+                <div className="mb-3">
+                    <select value={this.state.automobile} onChange={this.handleAutomobileChange} required name="automobile" id="vin" className="form-select">
+                    <option value="">Choose a bin</option>
+                    {this.state.automobiles.map(automobile => {
+                        return (
+                        <option key={automobile.id} value={automobile.href}>
+                            {automobile.vin}
+                        </option>
+                        );
+                    })}
+                    </select>
+                </div>
+                <div className="mb-3">
+                    <select value={this.state.sales_person} onChange={this.handleSalesPersonChange} required name="employees" id="employee_number" className="form-select">
+                    <option value="">Choose a Sales Rep</option>
+                    {this.state.employees.map(employee => {
+                        return (
+                        <option key={employee.id} value={employee.href}>
+                            {employee.employee_number}
+                        </option>
+                        );
+                    })}
+                    </select>
+                </div>
+                <div className="mb-3">
+                    <select value={this.state.customer} onChange={this.handleCustomerChange} required name="customer" id="id" className="form-select">
+                    <option value="">Choose a customer</option>
+                    {this.state.customers.map(customer => {
+                        return (
+                        <option key={customer.id} value={customer.href}>
+                            {customer.id}
+                        </option>
+                        );
+                    })}
+                    </select>
                 </div>
                 <div className="form-floating mb-3">
-                    <input value={this.state.address} onChange={this.handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
-                    <label htmlFor="address">Address</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input value={this.state.phone_number} onChange={this.handlePhoneNumberChange} placeholder="Phone_number" required type="text" name="phone_number" id="phone_number" className="form-control" />
-                    <label htmlFor="phone_number">Phone Number</label>
+                    <input value={this.state.price} onChange={this.handlePriceChange} placeholder="Price" required type="text" name="price" id="price" className="form-control" />
+                    <label htmlFor="price">Price</label>
                 </div>
                 <button className="btn btn-primary">Create</button>
                 </form>
