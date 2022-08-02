@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderMatches } from 'react-router-dom';
+import './App.css';
 
 class SalesRecordForm extends React.Component {
     constructor(props) {
