@@ -3,7 +3,7 @@ function MainPage() {
   return (
     
     <div className="px-5 py-5 my-5 text-center">
-    <div class="opacity-75">
+    <div className="opacity-75">
 
 
     
@@ -13,7 +13,7 @@ function MainPage() {
       <h1>
         <img src="https://i.imgur.com/tkeHZlr.png" className="" alt= "CarCar Logo" width="" height=""/>
         </h1>
-        <div class="container-sm">
+        <div className="container-sm">
       <div className="col-lg-3 mx-auto">
       </div>
         <p className="lead mb-4">

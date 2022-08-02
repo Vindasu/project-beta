@@ -6,11 +6,11 @@ function Nav() {
       <div className="container-fluid">
         
         <NavLink className="navbar-brand" to="/">CarCar</NavLink>
-        <div class="form-check form-switch">
-          <input type="checkbox" class="form-check-input" id="darkSwitch" />
-          <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+        <div className="form-check form-switch">
+          <input type="checkbox" className="form-check-input" id="darkSwitch" />
+          <label className="custom-control-label" htmlFor="darkSwitch">Dark Mode</label>
 
-      <input class="form-check-input" type="checkbox" id="lightSwitch" />
+      <input className="form-check-input" type="checkbox" id="lightSwitch" />
     </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -34,6 +34,9 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/saleshistory">Sales History</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/services">Services</NavLink>
             </li>
           </ul>
         </div>
