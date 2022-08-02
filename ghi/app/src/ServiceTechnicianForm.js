@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 class ServiceTechnicianForm extends React.Component {
   constructor(props) {

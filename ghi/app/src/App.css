@@ -11,3 +11,13 @@
 .opacity80 {
     background: rgba(255,255,255,0.8);
     }
+
+.form-control {
+    color: rgb(255, 255, 255);
+    background-color: #4a4a4a!important;
+}
+
+.form-control:focus {
+    color: rgb(255, 255, 255);
+    background-color: #4a4a4a!important;
+}

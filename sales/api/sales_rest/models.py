@@ -36,4 +36,4 @@ class Sale(models.Model):
         on_delete=models.CASCADE,null = True,
         blank = True,
     )
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    price = models.DecimalField(max_digits=7, decimal_places=2, null = True)

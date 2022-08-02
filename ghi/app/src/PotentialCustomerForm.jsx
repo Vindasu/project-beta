@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderMatches } from 'react-router-dom';
-
+import './App.css';
 
 class PotentialCustomerForm extends React.Component {
     constructor(props) {
@@ -65,6 +65,7 @@ class PotentialCustomerForm extends React.Component {
     
     render() {
         return (
+
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
@@ -81,12 +82,15 @@ class PotentialCustomerForm extends React.Component {
                 <div className="form-floating mb-3">
                     <input value={this.state.phone_number} onChange={this.handlePhoneNumberChange} placeholder="Phone_number" required type="text" name="phone_number" id="phone_number" className="form-control" />
                     <label htmlFor="phone_number">Phone Number</label>
+                    
                 </div>
+                
                 <button className="btn btn-primary">Create</button>
                 </form>
             </div>
             </div>
         </div>
+
         );
     }
 }
