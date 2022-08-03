@@ -14,6 +14,14 @@ function ServiceHistoryList() {
     useEffect(() => {
         fetchAppointments()
     }, [])
+    
+    // const handleSearch = event => {
+    //     const query = event.target.value;
+
+    //     this.setState(prevState => {
+    //         const filteredData = 
+    //     })
+    // }
 
     return (
         <>

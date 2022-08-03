@@ -20,6 +20,7 @@ class Appointment(models.Model):
     # time = models.TimeField(null=True, blank=True)
     reason = models.CharField(max_length=100, null=True, blank=True)
     status = models.BooleanField(default=False, null=True, blank=True)
+    vip = models.BooleanField(default=False, null=True, blank=True)
     technician = models.ForeignKey(
         Technician,
         related_name="appointments",
