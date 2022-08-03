@@ -26,14 +26,13 @@ function ServiceAppList() {
         }
     }
 
-    const handleFinished = async (id) => {
-        const url2 = `${url}${id}`
-        const data = {
-            status: true,
-        }
+    const handleFinished = async (appointment) => {
+        const url2 = `${url}${appointment.id}`
+        appointment['status'] = true
+        console.log('appointment: ', appointment)
         const fetchConfig = {
             method: "put",
-            body: JSON.stringify(data),
+            body: JSON.stringify(appointment),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -42,8 +41,8 @@ function ServiceAppList() {
         const response = await fetch(url2, fetchConfig)
         if (response.ok) {
             setAppointments(
-                appointments.filter((appointment) => {
-                    return appointment.id !== id;
+                appointments.filter((app) => {
+                    return app.id !== appointment.id;
                 })
             )
         }
@@ -102,24 +101,28 @@ function ServiceAppList() {
                                 <th>Technician</th>
                                 <th>Reason</th>
                                 <th>VIP</th>
+                                <th>Status</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {appointments.map(appointment => (
-                                <tr key={appointment.id}>
-                                    <td>{appointment.vin}</td>
-                                    <td>{appointment.customer}</td>
-                                    <td>{appointment.date_time}</td>
-                                    <td>{appointment.date_time}</td>
-                                    <td>{appointment.technician.name}</td>
-                                    <td>{appointment.reason}</td>
-                                    <td></td>
-                                    <td><button onClick={() => handleCancel(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
-                                    <td><button onClick={() => handleFinished(appointment.id)} className="btn btn-outline-success">Finished</button></td>
-                                </tr>
-                            ))}
+                            {appointments.map(appointment => {
+                                return (appointment.status === false &&
+                                    <tr key={appointment.id}>
+                                        <td>{appointment.vin}</td>
+                                        <td>{appointment.customer}</td>
+                                        <td>{appointment.date_time.slice(0, 10)}</td>
+                                        <td>{appointment.date_time.slice(11, 16)}</td>
+                                        <td>{appointment.technician.name}</td>
+                                        <td>{appointment.reason}</td>
+                                        <td></td>
+                                        <td>{ String(appointment.status) }</td>
+                                        <td><button onClick={() => handleCancel(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
+                                        <td><button onClick={() => handleFinished(appointment)} className="btn btn-outline-success">Finished</button></td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

@@ -11,6 +11,7 @@ class ServiceAppForm extends React.Component {
         // date: '',
         // time: '',
         reason: '',
+        status: false,
         technician_id: '',
         technicians: [],
     };
@@ -20,6 +21,7 @@ class ServiceAppForm extends React.Component {
     // this.handleDateChange = this.handleDateChange.bind(this);
     // this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleReasonChange = this.handleReasonChange.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
     this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -47,6 +49,7 @@ class ServiceAppForm extends React.Component {
         // date: '',
         // time: '',
         reason: '',
+        status: false,
         technician_id: '',
       };
       this.setState(cleared);
@@ -81,6 +84,11 @@ class ServiceAppForm extends React.Component {
   handleReasonChange(event) {
     const value = event.target.value;
     this.setState({reason: value})
+  }
+
+  handleStatusChange(event) {
+    const value = event.target.value;
+    this.setState({status: value})
   }
 
   handleTechnicianChange(event) {
