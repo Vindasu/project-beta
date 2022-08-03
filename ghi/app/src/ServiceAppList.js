@@ -27,9 +27,8 @@ function ServiceAppList() {
     }
 
     const handleFinished = async (appointment) => {
-        const url2 = `${url}${appointment.id}`
+        const url2 = `${url}${appointment.id}/`
         appointment['status'] = true
-        console.log('appointment: ', appointment)
         const fetchConfig = {
             method: "put",
             body: JSON.stringify(appointment),
@@ -101,7 +100,6 @@ function ServiceAppList() {
                                 <th>Technician</th>
                                 <th>Reason</th>
                                 <th>VIP</th>
-                                <th>Status</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -116,8 +114,7 @@ function ServiceAppList() {
                                         <td>{appointment.date_time.slice(11, 16)}</td>
                                         <td>{appointment.technician.name}</td>
                                         <td>{appointment.reason}</td>
-                                        <td></td>
-                                        <td>{ String(appointment.status) }</td>
+                                        <td>{ String(appointment.vip) }</td>
                                         <td><button onClick={() => handleCancel(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
                                         <td><button onClick={() => handleFinished(appointment)} className="btn btn-outline-success">Finished</button></td>
                                     </tr>

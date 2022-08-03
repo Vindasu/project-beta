@@ -36,6 +36,7 @@ class AppointmentEncoder(ModelEncoder):
         # "time",
         "reason",
         "status",
+        "vip",
         'technician',
     ]
     encoders = {
@@ -57,13 +58,20 @@ def api_appointments(request):
         )
     else: # POST
         try:
-            # automobile = AutomobileVO.objects.get(import_href=content["automobile"])
             # content["automobile"] = automobile
             # setting content's automobile attribute to the specific automobileVO
             content = json.loads(request.body)
+
             technician_id = content["technician_id"]
             technician = Technician.objects.get(id=technician_id)
             content["technician"] = technician
+
+            try:
+                automobile = AutomobileVO.objects.get(vin=content["vin"])
+                content["vip"] = True
+            except:
+                pass
+
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
@@ -111,6 +119,7 @@ def api_appointment(request, pk):
             for prop in props:
                 if prop in content:
                     setattr(appointment, prop, content[prop])
+
             appointment.save()
             return JsonResponse(
                 appointment,
