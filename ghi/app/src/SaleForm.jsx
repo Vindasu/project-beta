@@ -7,17 +7,18 @@ class SaleForm extends React.Component {
         super(props)
         this.state = {
             employees: [],
-            employee_id: '',
+            employee: '',
             automobiles: [],
             automobile: '',
             customers: [],
-            customer_id: '',
+            customer: '',
             price: '',
         };
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
+        
     }
     
     async handleSubmit(event) {
@@ -37,9 +38,9 @@ class SaleForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const cleared = {
-                employee_id: '',
+                employee: '',
                 automobile: '',
-                customer_id: '',
+                customer: '',
                 price: '',
             };
             this.setState(cleared);
@@ -52,11 +53,11 @@ class SaleForm extends React.Component {
     }
     handleEmployeeChange(event) {
         const value = event.target.value;
-        this.setState({employee_id: value})
+        this.setState({employee: value})
     }
     handleCustomerChange(event) {
         const value = event.target.value;
-        this.setState({customer_id: value})
+        this.setState({customer: value})
     }
     handlePriceChange(event) {
         const value = event.target.value;
@@ -108,7 +109,7 @@ class SaleForm extends React.Component {
                     </select> 
                 </div>
                 <div className="mb-3">
-                    <select value={this.state.employee_id} onChange={this.handleEmployeeChange} required name="employee" id="employee" className="form-select">
+                    <select value={this.state.employee} onChange={this.handleEmployeeChange} required name="employee" id="employee" className="form-select">
                     <option value="">Choose a Sales Rep</option>
                     {this.state.employees.map(employee => {
                         return (
@@ -120,7 +121,7 @@ class SaleForm extends React.Component {
                     </select>
                 </div>
                 <div className="mb-3">
-                        <select value={this.state.customer_id} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
+                        <select value={this.state.customer} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
                         <option value="">Choose a customer</option>
                         {this.state.customers.map(customer => {
                             return (

@@ -49,7 +49,7 @@ class SaleEncoder(ModelEncoder):
     }
     def get_extra_data(self, o):
         return {
-            "automobile": o.automobile.import_href,
+            "vin": o.automobile.vin,
         }
 
 @require_http_methods(["GET", "POST"])

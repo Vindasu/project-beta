@@ -31,7 +31,7 @@ class SalesList extends React.Component {
         return (
             <>
             <h1>View Sales</h1>
-            <table className="table table-striped">
+            <table className="table table-dark table-hover">
             <thead>
                 <tr>
                 <th>Sales Person</th>
@@ -42,9 +42,9 @@ class SalesList extends React.Component {
                 </tr>
             </thead>
             <tbody>
-                {this.state.sales.map(sale => {
+                {this.state.sales.map((sale, index)=> {
                 return (
-                    <tr key={sale.id}>
+                    <tr key={index}>
                     <td>{ sale.employee.name }</td>
                     <td>{ sale.employee.employee_number }</td>
                     <td>{ sale.customer.name }</td>

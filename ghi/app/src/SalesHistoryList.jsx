@@ -15,6 +15,7 @@ export default function SalesHistoryList() {
         const result = await fetch(url);
         const recordsJSON = await result.json();
         setEmployees(recordsJSON.employees);
+        console.log(recordsJSON.employees)
     }
 
     const fetchSales = async () => {
@@ -52,7 +53,7 @@ export default function SalesHistoryList() {
                     </select>
                 </div>
             </div>
-            <table className="table table-striped">
+            <table className="table table-dark table-hover">
                 <thead>
                     <tr>
                         <th>Employee</th>
@@ -62,11 +63,11 @@ export default function SalesHistoryList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {sales?.filter((val) => {
-                        if (val.employee.number == employee) {
-                            return val;
+                    {sales?.filter((key) => {
+                        if (key.employee.id == employee) {
+                            return key;
                         } else if (employee == '') {
-                            return val;
+                            return key;
                         }
                     }).map(sale => {
                         return (
