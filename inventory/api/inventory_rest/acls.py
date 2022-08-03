@@ -9,7 +9,7 @@ def get_photo(manufacturer, name):
     headers = {"Authorization": PEXELS_API_KEY}
     params = {
         "per_page": 1,
-        "query": f"{manufacturer} {name} ",
+        "query": f"{manufacturer} {name}",
     }
     url = "https://api.pexels.com/v1/search"
     response = requests.get(url, params=params, headers=headers)

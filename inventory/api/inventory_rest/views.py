@@ -171,9 +171,9 @@ def api_vehicle_models(request):
             manufacturer_id = content["manufacturer_id"]
             manufacturer = Manufacturer.objects.get(id=manufacturer_id)
             content["manufacturer"] = manufacturer
-            model = VehicleModel.objects.create(**content)
             photo = get_photo(content["manufacturer"], content["name"])
             content.update(photo)
+            model = VehicleModel.objects.create(**content)
             return JsonResponse(
                 model,
                 encoder=VehicleModelEncoder,
