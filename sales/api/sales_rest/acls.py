@@ -2,7 +2,7 @@
 # import requests
 # import os
 
-# from inventory.api.inventory_rest.models import Automobile
+# from .models import AutomobileVO
 
 
 
@@ -11,9 +11,10 @@
 
 # def get_photo():
 #     headers = {"Authorization": PEXELS_API_KEY}
+#     automobile = AutomobileVO.objects.all()
 #     params = {
 #         "per_page": 1,
-#         "query": f"{Automobile.manufacturer} {Automobile.model} ",
+#         "query": f"{automobile.model.manufacturer} {automobile.model} ",
 #     }
 #     url = "https://api.pexels.com/v1/search"
 #     response = requests.get(url, params=params, headers=headers)

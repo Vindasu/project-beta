@@ -1,59 +1,64 @@
 import React, { useEffect } from 'react';
 import App from './App';
-import {useState} from 'react'
 
-function SalesList() {
-    const [sales, setSales] = useState([])
 
-    const fetchSales = async () => {
-        const url = 'http://localhost8090/api/sales/'
-        const res = await fetch(url)
-        const salesJSON = await res.json()
-        setSales(salesJSON.sales)
+class SalesList extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {sales: []}
     }
-    useEffect(() => {
-        fetchSales()
-    }, [])
 
-    function handleDelete(id) {
-        const url = `http://localhost:8090/api/sales/${id}/`
-        const fetchConfig = {method:"DELETE"}
-        const response = fetch(url, fetchConfig)
-        setSales(sales.filter(
-            function(sale) {
-                return sale.id !== sale;
-            }
-        ))
+    async componentDidMount() {
+        const response = await fetch('http://localhost:8090/api/sales/')
+        if (response.ok) {
+            const data = await response.json()
+            console.log(data)
+            this.setState({ sales: data.sales })
+        }
     }
-    return (
-        <table className="table table-dark table-hover">
+
+    // async handleDelete(id) {
+    //     const url = `http://localhost:8090/api/sales/${id}/`
+    //     const fetchConfig = {method:"DELETE"}
+    //     const response = fetch(url, fetchConfig)
+    //     setSales(sales.filter(
+    //         function(sale) {
+    //             return sale.id !== sale;
+    //         }
+    //     ))
+    // }
+    render () {
+        return (
+            <>
+            <h1>View Sales</h1>
+            <table className="table table-striped">
             <thead>
-            <tr>
+                <tr>
                 <th>Sales Person</th>
-                <th>Automobile</th>
+                <th>Employee Number</th>
                 <th>Customer</th>
-                <th>Picture</th>
-                <th>Delete</th>
-            </tr>
+                <th>VIN</th>
+                <th>Sale Price</th>
+                </tr>
             </thead>
             <tbody>
-            {sales.map(sale => {
+                {this.state.sales.map(sale => {
                 return (
-                <tr key={sale.employee_id}>
-                    <td>{ sale.employee }</td>
-                    <td>{ sale.automobile }</td>
-                    <td>{ sale.customer }</td>
-                    <td>
-                    <img src={sale.picture_url} className="" alt= "..." width="100" height="100"></img>
-                    </td>
-                    <td><button variant="outline-danger" onClick={() => handleDelete(sale.id)}>Delete</button></td>
-                </tr>
+                    <tr key={sale.id}>
+                    <td>{ sale.employee.name }</td>
+                    <td>{ sale.employee.employee_number }</td>
+                    <td>{ sale.customer.name }</td>
+                    <td>{ sale.automobile.vin }</td>
+                    <td>${ sale.price }</td>                 
+                    </tr>
                 );
-            })}
+                })}
             </tbody>
-        </table>
-    );
+            </table>
+            </>
+        )        
+    }
 }
-    
 
-export default SalesList
+
+    export default SalesList

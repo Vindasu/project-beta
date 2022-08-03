@@ -63,33 +63,27 @@ class SaleForm extends React.Component {
         this.setState({price: value})
     }
 
-    async componentDidMount() {
-        const url = 'http://localhost:8100/api/automobiles/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({automobiles: data.automobiles})
-        }
-    }
 
     async componentDidMount() {
-        const url = 'http://localhost:8090/api/employees/';
-        const response = await fetch(url);
+        const customerUrl = 'http://localhost:8090/api/customers/';
+        const automobileUrl = 'http://localhost:8100/api/automobiles/';
+        const employeeUrl = 'http://localhost:8090/api/employees/';
 
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({employees: data.employees})
-        }
-    }
+        const customerResponse = await fetch(customerUrl);
+        const automobileResponse = await fetch(automobileUrl);
+        const employeeResponse = await fetch(employeeUrl);
 
-    async componentDidMount() {
-        const url = 'http://localhost:8090/api/customers/';
-        const response = await fetch(url);
+        if (customerResponse.ok && automobileResponse.ok && employeeResponse.ok) {
+            const customerdata = await customerResponse.json();
+            const automobiledata = await automobileResponse.json();
+            const employeedata = await employeeResponse.json();
+            
+            this.setState({
+                customers: customerdata.customers, 
+                automobiles: automobiledata.autos,
+                employees: employeedata.employees
+            })
 
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({customers: data.customers})
         }
     }
 
@@ -106,7 +100,7 @@ class SaleForm extends React.Component {
                     <option value="">Choose an automobile</option>
                     {this.state.automobiles.map(automobile => {
                         return (
-                        <option key={automobile.import_href} value={automobile.import_href}>
+                        <option key={automobile.href} value={automobile.href}>
                             {automobile.vin}
                         </option>
                         );
@@ -188,4 +182,4 @@ export default SaleForm;
 //         }
 //     }
 
-
+    

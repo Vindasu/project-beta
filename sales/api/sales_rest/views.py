@@ -4,6 +4,7 @@ from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
 import json
 
+
 # from sales_rest.acls import get_photo
 from .models import AutomobileVO, Employee, Sale, Customer
 
@@ -39,7 +40,6 @@ class SaleEncoder(ModelEncoder):
         "customer",
         "employee",
         "automobile",
-        "picture_url",
     ]
     encoders = {
         
@@ -78,8 +78,6 @@ def api_list_sales(request):
             )
             response.status_code = 404
             return response
-        # photo = get_photo(content["year"], content["color"])
-        # content.update(photo)
         sale = Sale.objects.create(**content)
         return JsonResponse(
             sale,

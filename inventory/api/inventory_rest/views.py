@@ -2,6 +2,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
 
+from .acls import get_photo
+
 from .encoders import (
     AutomobileEncoder,
     ManufacturerEncoder,
@@ -170,6 +172,8 @@ def api_vehicle_models(request):
             manufacturer = Manufacturer.objects.get(id=manufacturer_id)
             content["manufacturer"] = manufacturer
             model = VehicleModel.objects.create(**content)
+            photo = get_photo(content["manufacturer"], content["name"])
+            content.update(photo)
             return JsonResponse(
                 model,
                 encoder=VehicleModelEncoder,

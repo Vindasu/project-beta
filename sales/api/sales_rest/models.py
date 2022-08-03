@@ -45,7 +45,7 @@ class Sale(models.Model):
         on_delete=models.CASCADE,null = True,
         blank = True,
     )
-    price = models.DecimalField(max_digits=7, decimal_places=2, null = True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null = True)
 
     def get_api_url(self):
         return reverse("api_list_sales", kwargs={"pk": self.pk})
