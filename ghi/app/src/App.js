@@ -16,6 +16,8 @@ import ServiceAppForm from './ServiceAppForm';
 import InventoryPage from './InventoryPage';
 import InventoryMfgList from './InventoryMfgList';
 import InventoryMfgForm from './InventoryMfgForm';
+import InventoryModelList from './InventoryModelList';
+import InventoryModelForm from './InventoryModelForm';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="inventory" element={<InventoryPage />} />
           <Route path="inventory/manufacturers" element={<InventoryMfgList />} />
           <Route path="inventory/manufacturers/new" element={<InventoryMfgForm />} />
+          <Route path="inventory/models" element={<InventoryModelList />} />
+          <Route path="inventory/models/new" element={<InventoryModelForm />} />
 
           <Route path="/salesperson/new" element={<SalesPersonForm />} />
           <Route path="/customer/new" element={<PotentialCustomerForm />} />

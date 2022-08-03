@@ -24,6 +24,8 @@ function ServiceAppList() {
         )
     }
 
+    // handle Finished just filters and removes from table, the second part of the delete fxn
+
     useEffect(() => {
         fetchAppointments()
     }, [])
