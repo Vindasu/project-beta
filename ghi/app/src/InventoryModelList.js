@@ -38,7 +38,9 @@ function InventoryModelList() {
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.manufacturer.name}</td>
-                            <td>{model.picture_url}</td>
+                            <td>
+                                <img src={model.picture_url} className="" alt="car model" width="150" height="100"></img>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
