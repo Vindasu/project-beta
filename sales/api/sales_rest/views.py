@@ -61,18 +61,17 @@ def api_list_sales(request):
             encoder=SaleEncoder,
         )
     else:    
+        content= json.loads(request.body)
         try:
-            content = json.loads(request.body)
             automobile = AutomobileVO.objects.get(import_href=content["automobile"])
             content["automobile"] = automobile
-            employee_id = content["employee_id"]
-            employee = Employee.objects.get(id=employee_id)
+            
+            employee = Employee.objects.get(id=content["employee"])
             content["employee"] = employee
             
-            customer_id = content["customer_id"] 
-            customer = Customer.objects.get(id=customer_id)
-            content["name"] = customer
-            sale = Sale.objects.create(**content)
+            customer = Customer.objects.get(id=content["customer"])
+            content["customer"] = customer
+
         except:
             response = JsonResponse(
                 {"message": "Could not create the sale"}
@@ -89,10 +88,10 @@ def api_list_sales(request):
         )
 
 @require_http_methods(["DELETE", "GET", "PUT"])
-def api_show_sales(request, vin):
+def api_show_sales(request, pk):
     if request.method == "GET":
         try:
-            sale = Sale.objects.get(vin=vin)
+            sale = Sale.objects.get(id=pk)
             return JsonResponse(
                 sale,
                 encoder=SaleEncoder,
@@ -104,7 +103,7 @@ def api_show_sales(request, vin):
             return response
     elif request.method == "DELETE":
         try:
-            sale = Sale.objects.get(vin=vin)
+            sale = Sale.objects.get(id=pk)
             sale.delete()
             return JsonResponse(
                 sale,
@@ -116,7 +115,7 @@ def api_show_sales(request, vin):
     else: # PUT
         try:
             content = json.loads(request.body)
-            sale = Sale.objects.get(vin=vin)
+            sale = Sale.objects.get(id=pk)
             props = ["price"]
             for prop in props:
                 if prop in content:
@@ -144,18 +143,20 @@ def api_employee(request):
     else:
         try:
             content = json.loads(request.body)
+            employee = Employee.objects.create(**content)
+            return JsonResponse(
+                employee,
+                encoder=EmployeeEncoder,
+                safe=False,)
         except:
             response = JsonResponse(
                 {"message": "Could not create the sales person"}
             )
             response.status_code = 400
             return response
-        employee = Employee.objects.create(**content)
-        return JsonResponse(
-            employee,
-            encoder=EmployeeEncoder,
-            safe=False,
-        )
+        
+        
+        
     
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_show_employee(request, pk):

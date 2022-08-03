@@ -5,7 +5,8 @@ import Nav from './Nav';
 
 import EmployeeForm from './EmployeeForm';
 import CustomerForm from './CustomerForm';
-import SalesRecordForm from './SalesRecordForm';
+// import SalesRecordForm from './SalesRecordForm';
+import SaleForm from './SaleForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistoryList';
 import ServiceHistoryList from './ServiceHistoryList';
@@ -23,6 +24,7 @@ import InventoryModelList from './InventoryModelList';
 import InventoryModelForm from './InventoryModelForm';
 import InventoryAutoList from './InventoryAutoList';
 import InventoryAutoForm from './InventoryAutoForm';
+
 
 function App() {
   return (
@@ -42,7 +44,7 @@ function App() {
           <Route path="inventory/autos/new" element={<InventoryAutoForm />} />
           <Route path="/employee/new" element={<EmployeeForm />} />
           <Route path="/customer/new" element={<CustomerForm />} />
-          <Route path="/sales/new" element={<SalesRecordForm />} />
+          <Route path="/sales/new" element={<SaleForm />} />
           <Route path="/sales" element={<SalesList />} />
           <Route path="/saleshistory" element={<SalesHistoryList />} />
           <Route path="services" element={<ServiceAppList />} />

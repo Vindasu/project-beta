@@ -1,13 +1,13 @@
 import React from 'react';
-import { renderMatches } from 'react-router-dom';
+
 import './App.css';
 
-class SalesRecordForm extends React.Component {
+class SaleForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             employees: [],
-            employee: '',
+            employee_id: '',
             automobiles: [],
             automobile: '',
             customers: [],
@@ -37,7 +37,7 @@ class SalesRecordForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const cleared = {
-                employee: '',
+                employee_id: '',
                 automobile: '',
                 customer_id: '',
                 price: '',
@@ -52,7 +52,7 @@ class SalesRecordForm extends React.Component {
     }
     handleEmployeeChange(event) {
         const value = event.target.value;
-        this.setState({employee: value})
+        this.setState({employee_id: value})
     }
     handleCustomerChange(event) {
         const value = event.target.value;
@@ -100,42 +100,30 @@ class SalesRecordForm extends React.Component {
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
                 <h1>Create a Sales Record</h1>
-                <form onSubmit={this.handleSubmit} id="create-sale-request-form">
+                <form onSubmit={this.handleSubmit} id="create-sale-record-form">
                 <div className="mb-3">
                     <select value={this.state.automobile} onChange={this.handleAutomobileChange} required name="automobile" id="automobile" className="form-select">
                     <option value="">Choose an automobile</option>
                     {this.state.automobiles.map(automobile => {
                         return (
-                        <option key={automobile.id} value={automobile.href}>
+                        <option key={automobile.href} value={automobile.href}>
                             {automobile.vin}
                         </option>
                         );
                     })}
-                    </select>
+                    </select> 
                 </div>
                 <div className="mb-3">
-                    <select value={this.state.employee} onChange={this.handleEmployeeChange} required name="employee" id="employee" className="form-select">
+                    <select value={this.state.employee_id} onChange={this.handleEmployeeChange} required name="employee" id="employee" className="form-select">
                     <option value="">Choose a Sales Rep</option>
                     {this.state.employees.map(employee => {
                         return (
                         <option key={employee.id} value={employee.id}>
-                            {employee.employee_number}
+                            {employee.name}
                         </option>
                         );
                     })}
                     </select>
-                </div>
-                <div className="mb-3">
-                            <select value={this.state.technician_id} onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
-                            <option value="">Choose a technician</option>
-                            {this.state.technicians.map(technician => {
-                                return (
-                                <option key={technician.id} value={technician.id}>
-                                    {technician.name}
-                                </option>
-                                );
-                            })}
-                            </select>
                 </div>
                 <div className="mb-3">
                         <select value={this.state.customer_id} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
@@ -162,4 +150,4 @@ class SalesRecordForm extends React.Component {
     }
 }
 
-export default SalesRecordForm;
+export default SaleForm;
