@@ -69,9 +69,9 @@ export default function SalesHistoryList() {
                         } else if (employee == '') {
                             return key;
                         }
-                    }).map(sale => {
+                    }).map((sale, index) => {
                         return (
-                            <tr key={sale.id}>
+                            <tr key={index}>
                                 <td>{sale.employee.name}</td>
                                 <td>{sale.customer.name}</td>
                                 <td>{sale.automobile.vin}</td>

@@ -21,7 +21,7 @@ class InventoryModelForm extends React.Component {
     const data = {...this.state};
     delete data.manufacturers;
     console.log("data: ", data);
-    console.log("data.manufacturer: ", data.manufacturer);
+    console.log("data.manufacturer: ", data.manufacturers);
     const url = 'http://localhost:8100/api/models/';
     const fetchConfig = {
         method: "post",
