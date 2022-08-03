@@ -69,7 +69,8 @@ def api_list_sales(request):
             employee = Employee.objects.get(id=employee_id)
             content["employee"] = employee
             
-            customer_id = content["customer_id"] = Customer.objects.get(content["name"])
+            customer_id = content["customer_id"] 
+            customer = Customer.objects.get(id=customer_id)
             content["name"] = customer
             sale = Sale.objects.create(**content)
         except:
