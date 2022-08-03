@@ -54,8 +54,8 @@ function ServiceAppList() {
                     <tr>
                         <th>VIN</th>
                         <th>Customer Name</th>
-                        {/* <th>Date</th>
-                        <th>Time</th> */}
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Technician</th>
                         <th>Reason</th>
                         <th>VIP</th>
@@ -68,8 +68,8 @@ function ServiceAppList() {
                         <tr key={appointment.id}>
                             <td>{appointment.vin}</td>
                             <td>{appointment.customer}</td>
-                            {/* <td>{appointment.date_time}</td>
-                            <td>{appointment.date_time}</td> */}
+                            <td>{appointment.date_time}</td>
+                            <td>{appointment.date_time}</td>
                             <td>{appointment.technician.name}</td>
                             <td>{appointment.reason}</td>
                             <td></td>

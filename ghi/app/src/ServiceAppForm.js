@@ -8,6 +8,8 @@ class ServiceAppForm extends React.Component {
         vin: '',
         customer: '',
         date_time: '',
+        // date: '',
+        // time: '',
         reason: '',
         technician_id: '',
         technicians: [],
