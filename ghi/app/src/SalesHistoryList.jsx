@@ -2,58 +2,85 @@ import React, { useEffect } from 'react';
 import App from './App';
 import {useState} from 'react'
 
+export default function SalesHistoryList() {
 
-function SalesHistoryList() {
-    const [sales, setSales] = useState([])
+    const [employees, setEmployees] = useState([]);
+
+    const [employee, setEmployee] = useState([]);
+
+    const [sales, setSales] = useState([]);
+
+    const fetchEmployees = async () => {
+        const url = 'http://localhost:8090/api/employees/';
+        const result = await fetch(url);
+        const recordsJSON = await result.json();
+        setEmployees(recordsJSON.employees);
+    }
 
     const fetchSales = async () => {
-        const url = 'http://localhost8090/api/sales/'
-        const res = await fetch(url)
-        const salesJSON = await res.json()
-        setSales(salesJSON.sales)
+        const url = `http://localhost:8090/api/sales/`;
+        const result = await fetch(url);
+        const recordsJSON = await result.json();
+        setSales(recordsJSON.sales);
     }
+
+    useEffect(() => {
+        fetchEmployees()
+    }, []);
+
     useEffect(() => {
         fetchSales()
-    }, [])
+    }, []);
 
-    function handleDelete(id) {
-        const url = `http://localhost:8090/api/sales/${id}/`
-        const fetchConfig = {method:"DELETE"}
-        const response = fetch(url, fetchConfig)
-        setSales(sales.filter(
-            function(sale) {
-                return sale.id !== sale;
-            }
-        ))
-    }
     return (
-        <table className="table table-dark table-hover">
-            <thead>
-            <tr>
-                <th>Sales Person</th>
-                <th>Automobile</th>
-                <th>Customer</th>
-                <th>Picture</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            {sales.map(sale => {
-                return (
-                <tr key={sale.id}>
-                    <td>{ sale.employee }</td>
-                    <td>{ sale.automobile }</td>
-                    <td>{ sale.customer }</td>
-                    <td>
-                    <img src={sale.picture_url} className="" alt= "..." width="100" height="100"></img>
-                    </td>
-                    <td><button variant="outline-danger" onClick={() => handleDelete(sale.id)}>Delete</button></td>
-                </tr>
-                );
-            })}
-            </tbody>
-        </table>
-    );
+        <div className="row">
+            <div className='className="offset-3 col-6"'>
+                <div className="form-floating col-sm-5">
+                    <select className="form-select input-small" aria-label="Default select example" onChange={(event) => {
+                        setEmployee(event.target.value);
+                    }}
+                        required
+                        name="employee"
+                        id="employee">
+                        <option value="">All</option>
+                        {employees?.map(employee => {
+                            return (
+                                <option key={employee.id} value={employee.id}>{employee.name}</option>
+                            )
+                        })
+                        }
+                    </select>
+                </div>
+            </div>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Customer</th>
+                        <th>Vin</th>
+                        <th>Sales Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sales?.filter((val) => {
+                        if (val.employee.number == employee) {
+                            return val;
+                        } else if (employee == '') {
+                            return val;
+                        }
+                    }).map(sale => {
+                        return (
+                            <tr key={sale.id}>
+                                <td>{sale.employee.name}</td>
+                                <td>{sale.customer.name}</td>
+                                <td>{sale.automobile.vin}</td>
+                                <td>${sale.price}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 }
 
-export default SalesHistoryList;

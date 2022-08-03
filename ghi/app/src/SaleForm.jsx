@@ -106,7 +106,7 @@ class SaleForm extends React.Component {
                     <option value="">Choose an automobile</option>
                     {this.state.automobiles.map(automobile => {
                         return (
-                        <option key={automobile.href} value={automobile.href}>
+                        <option key={automobile.import_href} value={automobile.import_href}>
                             {automobile.vin}
                         </option>
                         );
@@ -151,3 +151,41 @@ class SaleForm extends React.Component {
 }
 
 export default SaleForm;
+// import React from 'react';
+
+// import './App.css';
+
+
+//         };
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handlePriceChange = this.handleSubmit.bind(this);
+//     }
+//     handleChange(event) {
+//         const value = event.target.value;
+//         this.setState({ [event.target.name]: value })
+//     }
+
+
+//     async componentDidMount() {
+//         const employeeUrl = 'http://localhost:8090/api/employees/';
+//         const customerUrl = 'http://localhost:8090/api/customers/';
+//         const automobileUrl = 'http://localhost:8090/api/automobiles/';
+
+//         const employeeResponse = await fetch(employeeUrl);
+//         const customerResponse = await fetch(customerUrl);
+//         const automobileResponse = await fetch(automobileUrl);
+
+//         if (employeeResponse.ok && customerResponse.ok && automobileResponse.ok) {
+//             const employeeData = await employeeResponse.json();
+//             const customerData = await customerResponse.json();
+//             const automobileData = await automobileResponse.json();
+
+//             this.setState({
+//                 employees: employeeData.employees,
+//                 customers: customerData.customers,
+//                 automobiles: automobileData.automobiles,
+//             })
+//         }
+//     }
+
+
