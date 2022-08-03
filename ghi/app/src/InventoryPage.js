@@ -23,7 +23,7 @@ function InventoryPage() {
                 className="btn btn-outline-light"
                 onClick={(e) => {
                     e.preventDefault();
-                    window.location.href='http://localhost:3000/services/new';
+                    window.location.href='http://localhost:3000/inventory/autos/';
                 }}
                 >Automobiles
             </button>

@@ -9,9 +9,8 @@ function Nav() {
         <div className="form-check form-switch">
           <input type="checkbox" className="form-check-input" id="darkSwitch" />
           <label className="custom-control-label" htmlFor="darkSwitch">Dark Mode</label>
-
-      <input className="form-check-input" type="checkbox" id="lightSwitch" />
-    </div>
+          <input className="form-check-input" type="checkbox" id="lightSwitch" />
+        </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
