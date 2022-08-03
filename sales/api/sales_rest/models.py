@@ -8,18 +8,18 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
 
 
-class SalesPerson(models.Model):
+class Employee(models.Model):
     name = models.CharField(max_length=200,  null=True, blank=True)
     employee_number = models.PositiveSmallIntegerField(default=1)
 
-class PotentialCustomer(models.Model):
+class Customer(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     phone_number = models.CharField(max_length=200, null=True, blank=True)
 
 class Sale(models.Model):
-    sales_person = models.ForeignKey(
-        SalesPerson,
+    employee = models.ForeignKey(
+        Employee,
         related_name="sales",
         on_delete=models.CASCADE, null=True,
         blank = True,
@@ -31,7 +31,7 @@ class Sale(models.Model):
         blank = True,
     )
     customer = models.ForeignKey(
-        PotentialCustomer,
+        Customer,
         related_name="sales",
         on_delete=models.CASCADE,null = True,
         blank = True,

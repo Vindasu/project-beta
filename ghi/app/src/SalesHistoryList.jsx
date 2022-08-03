@@ -41,7 +41,7 @@ function SalesHistoryList() {
             {sales.map(sale => {
                 return (
                 <tr key={sale.id}>
-                    <td>{ sale.sales_person }</td>
+                    <td>{ sale.employee }</td>
                     <td>{ sale.automobile }</td>
                     <td>{ sale.customer }</td>
                     <td>

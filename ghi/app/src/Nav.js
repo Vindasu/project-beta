@@ -26,7 +26,7 @@ function Nav() {
               <NavLink className="nav-link" to="/services">Services</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salesperson/new">New Sales Person</NavLink>
+              <NavLink className="nav-link" to="/employee/new">New Sales Person</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/customer/new">New Customer</NavLink>

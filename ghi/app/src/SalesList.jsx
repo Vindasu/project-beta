@@ -39,8 +39,8 @@ function SalesList() {
             <tbody>
             {sales.map(sale => {
                 return (
-                <tr key={sale.sales_person_id}>
-                    <td>{ sale.sales_person }</td>
+                <tr key={sale.employee_id}>
+                    <td>{ sale.employee }</td>
                     <td>{ sale.automobile }</td>
                     <td>{ sale.customer }</td>
                     <td>

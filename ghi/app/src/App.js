@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 
-import SalesPersonForm from './SalesPersonForm';
-import PotentialCustomerForm from './PotentialCustomerForm';
+import EmployeeForm from './EmployeeForm';
+import CustomerForm from './CustomerForm';
 import SalesRecordForm from './SalesRecordForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistoryList';
@@ -37,9 +37,8 @@ function App() {
           <Route path="inventory/models/new" element={<InventoryModelForm />} />
           <Route path="inventory/autos" element={<InventoryAutoList />} />
           <Route path="inventory/autos/new" element={<InventoryAutoForm />} />
-
-          <Route path="/salesperson/new" element={<SalesPersonForm />} />
-          <Route path="/customer/new" element={<PotentialCustomerForm />} />
+          <Route path="/employee/new" element={<EmployeeForm />} />
+          <Route path="/customer/new" element={<CustomerForm />} />
           <Route path="/sales/new" element={<SalesRecordForm />} />
           <Route path="/sales" element={<SalesList />} />
           <Route path="/saleshistory" element={<SalesHistoryList />} />

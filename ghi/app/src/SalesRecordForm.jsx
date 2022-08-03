@@ -6,16 +6,16 @@ class SalesRecordForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sales_people: [],
-            sales_person: '',
+            employees: [],
+            employee: '',
             automobiles: [],
             automobile: '',
             customers: [],
-            customer: '',
+            customer_id: '',
             price: '',
         };
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
-        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this);
+        this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
     }
@@ -23,7 +23,7 @@ class SalesRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        delete data.sales_people;
+        delete data.employees;
         delete data.automobiles;
         delete data.customers;
         const url = 'http://localhost:8090/api/sales/'
@@ -37,9 +37,9 @@ class SalesRecordForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const cleared = {
-                sales_people: [],
-                automobiles: [],
-                customers: [],
+                employee: '',
+                automobile: '',
+                customer_id: '',
                 price: '',
             };
             this.setState(cleared);
@@ -50,13 +50,13 @@ class SalesRecordForm extends React.Component {
         const value = event.target.value;
         this.setState({automobile: value})
     }
-    handleSalesPersonChange(event) {
+    handleEmployeeChange(event) {
         const value = event.target.value;
-        this.setState({sales_person: value})
+        this.setState({employee: value})
     }
     handleCustomerChange(event) {
         const value = event.target.value;
-        this.setState({customer: value})
+        this.setState({customer_id: value})
     }
     handlePriceChange(event) {
         const value = event.target.value;
@@ -79,7 +79,7 @@ class SalesRecordForm extends React.Component {
 
         if (response.ok) {
             const data = await response.json();
-            this.setState({sales_people: data.sales_people})
+            this.setState({employees: data.employees})
         }
     }
 
@@ -114,19 +114,31 @@ class SalesRecordForm extends React.Component {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <select value={this.state.sales_person} onChange={this.handleSalesPersonChange} required name="sales_person" id="sales_person" className="form-select">
+                    <select value={this.state.employee} onChange={this.handleEmployeeChange} required name="employee" id="employee" className="form-select">
                     <option value="">Choose a Sales Rep</option>
-                    {this.state.sales_people.map(sales_person => {
+                    {this.state.employees.map(employee => {
                         return (
-                        <option key={sales_person.id} value={sales_person.id}>
-                            {sales_person.employee_number}
+                        <option key={employee.id} value={employee.id}>
+                            {employee.employee_number}
                         </option>
                         );
                     })}
                     </select>
                 </div>
                 <div className="mb-3">
-                        <select value={this.state.customer} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
+                            <select value={this.state.technician_id} onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
+                            <option value="">Choose a technician</option>
+                            {this.state.technicians.map(technician => {
+                                return (
+                                <option key={technician.id} value={technician.id}>
+                                    {technician.name}
+                                </option>
+                                );
+                            })}
+                            </select>
+                </div>
+                <div className="mb-3">
+                        <select value={this.state.customer_id} onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
                         <option value="">Choose a customer</option>
                         {this.state.customers.map(customer => {
                             return (
