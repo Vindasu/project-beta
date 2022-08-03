@@ -25,28 +25,33 @@ function InventoryAutoList() {
                 }}
                 >Create Automobile
             </button>
-            <table className="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Vin</th>
-                        <th>Color</th>
-                        <th>Year</th>
-                        <th>Model</th>
-                        <th>Manufacturer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {autos.map(auto => (
-                        <tr key={auto.id}>
-                            <td>{auto.vin}</td>
-                            <td>{auto.color}</td>
-                            <td>{auto.year}</td>
-                            <td>{auto.model.name}</td>
-                            <td>{auto.model.manufacturer.name}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="offset-0.5">
+                <div className="shadow p-4 mt-4">
+                    <h1>Automobiles</h1>
+                    <table className="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Vin</th>
+                                <th>Color</th>
+                                <th>Year</th>
+                                <th>Model</th>
+                                <th>Manufacturer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {autos.map(auto => (
+                                <tr key={auto.id}>
+                                    <td>{auto.vin}</td>
+                                    <td>{auto.color}</td>
+                                    <td>{auto.year}</td>
+                                    <td>{auto.model.name}</td>
+                                    <td>{auto.model.manufacturer.name}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </>
     )
 }
