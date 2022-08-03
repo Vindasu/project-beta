@@ -35,6 +35,7 @@ class AppointmentEncoder(ModelEncoder):
         # "date",
         # "time",
         "reason",
+        "status",
         'technician',
     ]
     encoders = {
@@ -54,7 +55,7 @@ def api_appointments(request):
             {"appointments": appointments},
             encoder=AppointmentEncoder,
         )
-    else:
+    else: # POST
         try:
             # automobile = AutomobileVO.objects.get(import_href=content["automobile"])
             # content["automobile"] = automobile
@@ -101,6 +102,25 @@ def api_appointment(request, pk):
             )
         except Appointment.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+    else: # PUT
+        try:
+            content = json.loads(request.body)
+            appointment = Appointment.objects.get(id=pk)
+
+            props = ["status"]
+            for prop in props:
+                if prop in content:
+                    setattr(appointment, prop, content[prop])
+            appointment.save()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
 
 @require_http_methods(["GET", "POST"])
 def api_technicians(request):
@@ -110,7 +130,7 @@ def api_technicians(request):
             {"technicians": technicians},
             encoder=TechnicianEncoder,
         )
-    else:
+    else: # POST
         try:
             content = json.loads(request.body)
         except:
@@ -126,7 +146,7 @@ def api_technicians(request):
             safe=False,
         )
 
-@require_http_methods(["DELETE"])
+@require_http_methods(["DELETE", "PUT"])
 def api_technician(request, pk):
     if request.method == "DELETE":
         try:

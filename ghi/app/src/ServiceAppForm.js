@@ -28,9 +28,6 @@ class ServiceAppForm extends React.Component {
     event.preventDefault();
     const data = {...this.state};
     delete data.technicians;
-    console.log("data: ", data);
-    console.log("data.technician: ", data.technician);
-    console.log("typeof data.technician: ", typeof data.technician);
     const url = 'http://localhost:8080/api/appointments/';
     const fetchConfig = {
         method: "post",
@@ -39,8 +36,8 @@ class ServiceAppForm extends React.Component {
             'Content-Type': 'application/json',
         },
     };
+    console.log("fetchConfig: ", fetchConfig);
     const response = await fetch(url, fetchConfig);
-    console.log("response: ", response);
     if (response.ok) {
       const newApp = await response.json();
       const cleared = {

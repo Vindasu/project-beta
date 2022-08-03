@@ -17,19 +17,36 @@ function ServiceAppList() {
             method: "delete"
         };
         const response = await fetch(url2, fetchConfig);
-        setAppointments(
-            appointments.filter((appointment) => {
-                return appointment.id !== id;
-            })
-        )
+        if (response.ok) {
+            setAppointments(
+                appointments.filter((appointment) => {
+                    return appointment.id !== id;
+                })
+            )
+        }
     }
 
     const handleFinished = async (id) => {
-        setAppointments(
-            appointments.filter((appointment) => {
-                return appointment.id !== id;
-            })
-        )
+        const url2 = `${url}${id}`
+        const data = {
+            status: true,
+        }
+        const fetchConfig = {
+            method: "put",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        console.log("fetchConfig: ", fetchConfig);
+        const response = await fetch(url2, fetchConfig)
+        if (response.ok) {
+            setAppointments(
+                appointments.filter((appointment) => {
+                    return appointment.id !== id;
+                })
+            )
+        }
     }
     
     useEffect(() => {
