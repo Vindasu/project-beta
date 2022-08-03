@@ -14,8 +14,6 @@ import ServiceHistoryList from './ServiceHistoryList';
 import ServiceAppList from './ServiceAppList';
 import ServiceTechnicianForm from './ServiceTechnicianForm';
 import ServiceAppForm from './ServiceAppForm';
-// remember to delete the below after
-import BodyData from './ServiceHistoryListBeta';
 
 import InventoryPage from './InventoryPage';
 import InventoryMfgList from './InventoryMfgList';
@@ -51,8 +49,6 @@ function App() {
           <Route path="/services/technicians" element={<ServiceTechnicianForm />} />
           <Route path="services/new" element={<ServiceAppForm />} />
           <Route path="services/history" element={<ServiceHistoryList />} />
-          {/* remember to delete the below after */}
-          <Route path="services/history/beta" element={<BodyData />} />
         </Routes>
       </div>
     </BrowserRouter>

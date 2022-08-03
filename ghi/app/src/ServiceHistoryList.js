@@ -40,16 +40,18 @@ function ServiceHistoryList() {
                                 } else if (val.vin.toLowerCase().includes(searchTerm.toLowerCase())) {
                                     return val
                                 }
-                            }).map(appointment => (
+                            }).map(appointment => {
+                                return (appointment.status == true &&
                                 <tr key={appointment.id}>
                                     <td>{appointment.vin}</td>
                                     <td>{appointment.customer}</td>
-                                    <td>{appointment.date_time}</td>
-                                    <td>{appointment.date_time}</td>
+                                    <td>{appointment.date_time.slice(0, 10)}</td>
+                                    <td>{appointment.date_time.slice(11, 16)}</td>
                                     <td>{appointment.technician.name}</td>
                                     <td>{appointment.reason}</td>
                                 </tr>
-                            ))}
+                                );
+                                })}
                         </tbody>
                     </table>
                 </div>

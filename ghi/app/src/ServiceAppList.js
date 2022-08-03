@@ -79,14 +79,6 @@ function ServiceAppList() {
                 }}
                 >Service History
             </button>
-            <button
-                className="btn btn-outline-light"
-                onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href='http://localhost:3000/services/history/beta';
-                }}
-                >Service History Beta
-            </button>
             <div className="offset-0.5">
                 <div className="shadow p-4 mt-4">
                     <h1>Service Appointments</h1>
