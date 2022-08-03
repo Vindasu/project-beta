@@ -8,13 +8,17 @@ class ServiceAppForm extends React.Component {
         vin: '',
         customer: '',
         date_time: '',
+        // date: '',
+        // time: '',
         reason: '',
-        technician: '',
+        technician_id: '',
         technicians: [],
     };
     this.handleVinChange = this.handleVinChange.bind(this);
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
+    // this.handleDateChange = this.handleDateChange.bind(this);
+    // this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleReasonChange = this.handleReasonChange.bind(this);
     this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,11 +42,15 @@ class ServiceAppForm extends React.Component {
     const response = await fetch(url, fetchConfig);
     console.log("response: ", response);
     if (response.ok) {
+      const newApp = await response.json();
       const cleared = {
         vin: '',
         customer: '',
         date_time: '',
+        // date: '',
+        // time: '',
         reason: '',
+        technician_id: '',
       };
       this.setState(cleared);
     }
@@ -63,6 +71,16 @@ class ServiceAppForm extends React.Component {
     this.setState({date_time: value})
   }
 
+  // handleDateChange(event) {
+  //   const value = event.target.value;
+  //   this.setState({date: value})
+  // }
+
+  // handleTimeChange(event) {
+  //   const value = event.target.value;
+  //   this.setState({time: value})
+  // }
+
   handleReasonChange(event) {
     const value = event.target.value;
     this.setState({reason: value})
@@ -70,7 +88,7 @@ class ServiceAppForm extends React.Component {
 
   handleTechnicianChange(event) {
     const value = event.target.value;
-    this.setState({technician: value})
+    this.setState({technician_id: value})
   }
 
   async componentDidMount() {
@@ -102,10 +120,18 @@ class ServiceAppForm extends React.Component {
                         </div>
                         <div className="form-floating mb-3">
                             <input value={this.state.date_time} onChange={this.handleDateTimeChange} placeholder="Date Time" type="datetime-local" name="date_time" id="date_time" className="form-control" />
-                            <label htmlFor="date_time">Date Time</label>
+                            <label htmlFor="date_time">Date / Time</label>
                         </div>
+                        {/* <div className="form-floating mb-3">
+                            <input value={this.state.date} onChange={this.handleDateChange} placeholder="Date" type="date" name="date" id="date" className="form-control" />
+                            <label htmlFor="date">Date</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input value={this.state.time} onChange={this.handleTimeChange} placeholder="Time" type="time" name="time" id="time" className="form-control" />
+                            <label htmlFor="time">Time</label>
+                        </div> */}
                         <div className="mb-3">
-                            <select value={this.state.technician} onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
+                            <select value={this.state.technician_id} onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
                             <option value="">Choose a technician</option>
                             {this.state.technicians.map(technician => {
                                 return (

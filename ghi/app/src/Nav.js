@@ -9,9 +9,8 @@ function Nav() {
         <div className="form-check form-switch">
           <input type="checkbox" className="form-check-input" id="darkSwitch" />
           <label className="custom-control-label" htmlFor="darkSwitch">Dark Mode</label>
-
-      <input className="form-check-input" type="checkbox" id="lightSwitch" />
-    </div>
+          <input className="form-check-input" type="checkbox" id="lightSwitch" />
+        </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +20,10 @@ function Nav() {
               <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salesperson/new">Inventory</NavLink>
+              <NavLink className="nav-link" to="/inventory">Inventory</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/services">Services</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/salesperson/new">New Sales Person</NavLink>
@@ -37,9 +39,6 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/saleshistory">Sales History</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/services">Services</NavLink>
             </li>
           </ul>
         </div>

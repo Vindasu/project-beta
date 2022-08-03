@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// export default () => {
 function ServiceAppList() {
     const [appointments, setAppointments] = useState([])
 
@@ -12,7 +11,7 @@ function ServiceAppList() {
         setAppointments(appointmentsJSON.appointments);
     }
 
-    const handleDelete = async (id) => {
+    const handleCancel = async (id) => {
         const url2 = `${url}${id}`
         const fetchConfig = {
             method: "delete"
@@ -25,6 +24,14 @@ function ServiceAppList() {
         )
     }
 
+    const handleFinished = async (id) => {
+        setAppointments(
+            appointments.filter((appointment) => {
+                return appointment.id !== id;
+            })
+        )
+    }
+    
     useEffect(() => {
         fetchAppointments()
     }, [])
@@ -35,7 +42,7 @@ function ServiceAppList() {
                 className="btn btn-outline-light"
                 onClick={(e) => {
                     e.preventDefault();
-                    window.location.href='http://localhost:3000/technicians';
+                    window.location.href='http://localhost:3000/services/technicians';
                 }}
                 >Enter Technician
             </button>
@@ -58,6 +65,8 @@ function ServiceAppList() {
                         <th>Technician</th>
                         <th>Reason</th>
                         <th>VIP</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +79,8 @@ function ServiceAppList() {
                             <td>{appointment.technician.name}</td>
                             <td>{appointment.reason}</td>
                             <td></td>
+                            <td><button onClick={() => handleCancel(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
+                            <td><button onClick={() => handleFinished(appointment.id)} className="btn btn-outline-success">Finished</button></td>
                         </tr>
                     ))}
                 </tbody>

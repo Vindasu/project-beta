@@ -15,18 +15,31 @@ class TechnicianEncoder(ModelEncoder):
         "employee_num",
     ]
 
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "id",
+        "import_href",
+        "color",
+        "year",
+        "vin",
+    ]
+
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
         "id",
         "vin",
         "customer",
-        # "date_time",
+        "date_time",
+        # "date",
+        # "time",
         "reason",
         'technician',
     ]
     encoders = {
         "technician": TechnicianEncoder(),
+        # "vin": AutomobileVOEncoder(),
     }
     # def get_extra_data(self, o):
     #     return {
@@ -48,7 +61,7 @@ def api_appointments(request):
             # setting content's automobile attribute to the specific automobileVO
             content = json.loads(request.body)
             technician_id = content["technician_id"]
-            technician = Technician.objects.get(pk=technician_id)
+            technician = Technician.objects.get(id=technician_id)
             content["technician"] = technician
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
