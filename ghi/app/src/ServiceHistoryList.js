@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function ServiceHistoryList() {
     const [appointments, setAppointments] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
 
     const url = 'http://localhost:8080/api/appointments/'
 
@@ -14,17 +15,10 @@ function ServiceHistoryList() {
     useEffect(() => {
         fetchAppointments()
     }, [])
-    
-    // const handleSearch = event => {
-    //     const query = event.target.value;
-
-    //     this.setState(prevState => {
-    //         const filteredData = 
-    //     })
-    // }
 
     return (
-        <>
+        <>  
+            <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
             <div className="offset-0.5">
                 <div className="shadow p-4 mt-4">
                     <h1>Service History</h1>
@@ -40,7 +34,13 @@ function ServiceHistoryList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {appointments.map(appointment => (
+                            {appointments.filter((val) => {
+                                if (searchTerm == "") {
+                                    return val
+                                } else if (val.vin.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                    return val
+                                }
+                            }).map(appointment => (
                                 <tr key={appointment.id}>
                                     <td>{appointment.vin}</td>
                                     <td>{appointment.customer}</td>

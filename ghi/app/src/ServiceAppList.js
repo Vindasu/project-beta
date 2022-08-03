@@ -116,7 +116,7 @@ function ServiceAppList() {
                                         <td>{appointment.reason}</td>
                                         <td>{ String(appointment.vip) }</td>
                                         <td><button onClick={() => handleCancel(appointment.id)} className="btn btn-outline-danger">Cancel</button></td>
-                                        <td><button onClick={() => handleFinished(appointment)} className="btn btn-outline-success">Finished</button></td>
+                                        <td><button onClick={() => handleFinished(appointment)} className="btn btn-outline-success">Completed</button></td>
                                     </tr>
                                 );
                             })}
