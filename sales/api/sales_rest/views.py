@@ -3,8 +3,18 @@ from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
 import json
+
+# from sales_rest.acls import get_photo
 from .models import AutomobileVO, SalesPerson, Sale, PotentialCustomer
 
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "import_href",
+        "color",
+        "year",
+        "vin",
+    ]
 class SalesPersonEncoder(ModelEncoder):
     model = SalesPerson
     properties = [
@@ -26,10 +36,16 @@ class SaleEncoder(ModelEncoder):
     model = Sale
     properties = [ 
         "price",
+        "customer",
+        "sales_person",
+        "automobile",
+        "picture_url",
     ]
     encoders = {
+        
         "sales_person": SalesPersonEncoder(),
         "customer": PotentialCustomerEncoder(),
+        "automobile": AutomobileVOEncoder(),
     }
     def get_extra_data(self, o):
         return {
@@ -59,6 +75,8 @@ def api_list_sales(request):
             )
             response.status_code = 404
             return response
+        # photo = get_photo(content["year"], content["color"])
+        # content.update(photo)
         sale = Sale.objects.create(**content)
         return JsonResponse(
             sale,
@@ -190,6 +208,8 @@ def api_potential_customer(request):
     else:
         try:
             content = json.loads(request.body)
+            automobile = AutomobileVO.objects.get(import_href=content["automobile"])
+            content["automobile"] = automobile
         except:
             response = JsonResponse(
                 {"message": "Could not create the customer"}

@@ -37,4 +37,4 @@ class Sale(models.Model):
         blank = True,
     )
     price = models.DecimalField(max_digits=7, decimal_places=2, null = True)
-    picture_url = models.URLField(null = True)
+    # picture_url = models.URLField(null = True)
