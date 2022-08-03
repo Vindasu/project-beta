@@ -25,20 +25,25 @@ function InventoryMfgList() {
                 }}
                 >Create Manufacturer
             </button>
-            <table className="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {manufacturers.map(manufacturer => (
-                        <tr key={manufacturer.id}>
-                            <td>{manufacturer.name}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="offset-0.5">
+                <div className="shadow p-4 mt-4">
+                    <h1>Manufacturers</h1>
+                    <table className="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {manufacturers.map(manufacturer => (
+                                <tr key={manufacturer.id}>
+                                    <td>{manufacturer.name}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </>
     )
 }
