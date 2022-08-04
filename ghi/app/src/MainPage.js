@@ -13,7 +13,9 @@ function MainPage() {
         <p className="lead mb-4">
           CarCar takes you FarFar... harhar
         </p>
+        
       </div>
+      <div></div>
     </div>
   );
 }

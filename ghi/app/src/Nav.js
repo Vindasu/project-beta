@@ -5,7 +5,7 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         
-        <NavLink className="navbar-brand" to="/">CarCar</NavLink>
+        <NavLink className="navbar-brand" to="/rolled">CarCar</NavLink>
         <div className="form-check form-switch">
           <input type="checkbox" className="form-check-input" id="darkSwitch" />
           <label className="custom-control-label" htmlFor="darkSwitch">Dark Mode</label>

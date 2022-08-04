@@ -18,12 +18,13 @@ class SaleForm extends React.Component {
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
-        
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
+        console.log(data)
         delete data.employees;
         delete data.automobiles;
         delete data.customers;
@@ -36,6 +37,7 @@ class SaleForm extends React.Component {
             },
         };
         const response = await fetch(url, fetchConfig);
+        console.log(response)
         if (response.ok) {
             const cleared = {
                 employee: '',
@@ -146,41 +148,4 @@ class SaleForm extends React.Component {
 }
 
 export default SaleForm;
-// import React from 'react';
 
-// import './App.css';
-
-
-//         };
-//         this.handleChange = this.handleChange.bind(this);
-//         this.handlePriceChange = this.handleSubmit.bind(this);
-//     }
-//     handleChange(event) {
-//         const value = event.target.value;
-//         this.setState({ [event.target.name]: value })
-//     }
-
-
-//     async componentDidMount() {
-//         const employeeUrl = 'http://localhost:8090/api/employees/';
-//         const customerUrl = 'http://localhost:8090/api/customers/';
-//         const automobileUrl = 'http://localhost:8090/api/automobiles/';
-
-//         const employeeResponse = await fetch(employeeUrl);
-//         const customerResponse = await fetch(customerUrl);
-//         const automobileResponse = await fetch(automobileUrl);
-
-//         if (employeeResponse.ok && customerResponse.ok && automobileResponse.ok) {
-//             const employeeData = await employeeResponse.json();
-//             const customerData = await customerResponse.json();
-//             const automobileData = await automobileResponse.json();
-
-//             this.setState({
-//                 employees: employeeData.employees,
-//                 customers: customerData.customers,
-//                 automobiles: automobileData.automobiles,
-//             })
-//         }
-//     }
-
-    
