@@ -21,6 +21,15 @@ function InventoryAutoList() {
                 className="btn btn-outline-light"
                 onClick={(e) => {
                     e.preventDefault();
+                    window.location.href='http://localhost:3000/inventory';
+                }}
+                >Back to Inventory Home
+            </button>
+            &nbsp;
+            <button
+                className="btn btn-outline-light"
+                onClick={(e) => {
+                    e.preventDefault();
                     window.location.href='http://localhost:3000/inventory/autos/new';
                 }}
                 >Create Automobile

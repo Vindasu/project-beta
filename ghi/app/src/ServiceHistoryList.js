@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './App.css';
 
 function ServiceHistoryList() {
     const [appointments, setAppointments] = useState([])
@@ -18,7 +19,15 @@ function ServiceHistoryList() {
 
     return (
         <>  
-            <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
+            <button
+                className="btn btn-outline-light"
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='http://localhost:3000/services';
+                }}
+                >Back to Services Home
+            </button>
+            <input className="form-control mr-sm-2" type="text" placeholder="Search VIN..." onChange={event => {setSearchTerm(event.target.value)}}/>
             <div className="offset-0.5">
                 <div className="shadow p-4 mt-4">
                     <h1>Service History</h1>
@@ -35,13 +44,13 @@ function ServiceHistoryList() {
                         </thead>
                         <tbody>
                             {appointments.filter((val) => {
-                                if (searchTerm == "") {
+                                if (searchTerm === "") {
                                     return val
                                 } else if (val.vin.toLowerCase().includes(searchTerm.toLowerCase())) {
                                     return val
                                 }
                             }).map(appointment => {
-                                return (appointment.status == true &&
+                                return (appointment.status === true &&
                                 <tr key={appointment.id}>
                                     <td>{appointment.vin}</td>
                                     <td>{appointment.customer}</td>

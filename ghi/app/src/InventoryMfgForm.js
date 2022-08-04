@@ -40,6 +40,14 @@ class InventoryMfgForm extends React.Component {
   render() {
     return (
         <>
+          <button
+            className="btn btn-outline-light"
+            onClick={(e) => {
+                e.preventDefault();
+                window.location.href='http://localhost:3000/inventory/manufacturers';
+            }}
+            >Back to Manufacturers
+          </button>
           <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
