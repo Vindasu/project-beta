@@ -2,7 +2,8 @@ function InventoryPage() {
     return (
         <>
             <button
-                className="btn btn-outline-light"
+                type="button"
+                className="btn btn-secondary btn-lg btn-block col-12"
                 onClick={(e) => {
                     e.preventDefault();
                     window.location.href='http://localhost:3000/inventory/manufacturers';
@@ -11,7 +12,7 @@ function InventoryPage() {
             </button>
             &nbsp;
             <button
-                className="btn btn-outline-light"
+                className="btn btn-secondary btn-lg btn-block col-12"
                 onClick={(e) => {
                     e.preventDefault();
                     window.location.href='http://localhost:3000/inventory/models';
@@ -20,7 +21,7 @@ function InventoryPage() {
             </button>
             &nbsp;
             <button
-                className="btn btn-outline-light"
+                className="btn btn-secondary btn-lg btn-block col-12"
                 onClick={(e) => {
                     e.preventDefault();
                     window.location.href='http://localhost:3000/inventory/autos/';
